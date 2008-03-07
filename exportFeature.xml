@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="org.eclipse.imp.releaseEngineering" default="build.feature.jar" basedir=".">
+	<import file="../org.eclipse.imp.releng.feature/buildCommon.xml"/>
+	<import file="../org.eclipse.imp.releng.update/buildFeatureCommon.xml"/>
+
+	<target name="init">
+		<property name="feature.name"        value="${releng.feature(id)}"/>
+		<property name="feature.version"     value="${releng.version}"/>
+		<property name="feature.temp.folder" value="${basedir}/feature.temp.folder"/>
+		<property name="feature.destination" value="${basedir}"/>
+
+		<loadfile property="plugins.list" srcfile="feature.xml">
+			<filterchain>
+				<containsregex pattern="&lt;plugin"/>
+				<replaceregex pattern="[ \t]*&lt;plugin .*id=&quot;([^&quot;]*)&quot;.*" replace="\1,"/>
+				<tokenfilter>
+					<filetokenizer/>
+					<replaceregex pattern=",[\r\n]* *" replace="," flags="gs"/>
+				</tokenfilter>
+			</filterchain>
+		</loadfile>
+		<echo message="Feature contains the following plugins: ${plugins.list}"/>
+	</target>
+	
+	<target name="build.all.plugins" depends="init">
+		<for param="plugin.id" values="${plugins.list}">
+			<antcall target="build.child">
+				<param name="plugin.id" value="${plugin.id}"/>
+			</antcall>
+		</for>
+	</target>
+
+	<target name="echo.child">
+		<echo message="Processing ${plugin.id}"/>
+	</target>
+
+	<!-- RMF Copy the plugin jars to the 'plugins' folder so that exportUpdate script can see it -->
+	<target name="gather.plugin.jars" depends="build.all.plugins">
+		<delete failonerror="false">
+			<fileset dir="plugins" includes="*.jar"/>
+		</delete>
+		<mkdir dir="plugins"/>
+		<for param="plugin.id" values="${plugins.list}">
+			<antcall target="copy.child">
+				<param name="plugin.id" value="${plugin.id}"/>
+			</antcall>
+		</for>
+	</target>
+</project>
