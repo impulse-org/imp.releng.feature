@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature id="org.eclipse.imp.releng" label="IMP Release Engineering (Incubation)" provider-name="rfuhrer@watson.ibm.com" version="1.0.5">
+<feature id="org.eclipse.imp.releng" label="IMP Release Engineering (Incubation)" provider-name="rfuhrer@watson.ibm.com" version="1.0.6">
 
    <description url="http://eclipse-imp.sourceforge.net/updates/">
       %description
@@ -13,6 +13,6 @@
       <update label="%updateSiteName" url="http://eclipse-imp.sourceforge.net/updates/"/>
    </url>
 
-   <plugin download-size="0" id="org.eclipse.imp.releng" install-size="0" unpack="false" version="1.0.26"/>
+   <plugin download-size="0" id="org.eclipse.imp.releng" install-size="0" unpack="false" version="1.0.27"/>
 
 </feature>
