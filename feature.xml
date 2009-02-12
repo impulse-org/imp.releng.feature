@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.imp.releng"
-      label="IMP Release Engineering (Incubation)"
+      label="%featureName"
       version="0.1.14"
-      provider-name="rfuhrer@watson.ibm.com">
+      provider-name="%providerName">
 
    <description url="http://eclipse-imp.sourceforge.net/updates/">
       %description
