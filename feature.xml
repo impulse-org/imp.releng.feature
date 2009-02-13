@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.imp.releng"
       label="%featureName"
-      version="0.1.14"
+      version="0.1.15"
       provider-name="%providerName">
 
    <description url="http://eclipse-imp.sourceforge.net/updates/">
@@ -17,11 +17,15 @@
       <update label="%updateSiteName" url="http://eclipse-imp.sourceforge.net/updates/"/>
    </url>
 
+   <requires>
+      <import plugin="org.tigris.subversion.subclipse.core"/>
+   </requires>
+
    <plugin
          id="org.eclipse.imp.releng"
          download-size="0"
          install-size="0"
-         version="0.1.35"
+         version="0.1.36"
          unpack="false"/>
 
 </feature>
