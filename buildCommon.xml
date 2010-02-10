@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="relengCommon" basedir=".">
+    <taskdef resource="antlib.xml" classpath="../org.eclipse.imp.update/ant-imp.jar"/>
+
     <property name="basews" value="${ws}"/>
     <property name="baseos" value="${os}"/>
     <property name="basearch" value="${arch}"/>
@@ -42,12 +44,12 @@
 
     <property name="bootclasspath" refid="path_bootclasspath"/>
 
-    <fail unless="imp.eclipse.target" message="You must define imp.eclipse.target as the location of the Eclipse installation against which IMP should be built."/>
+    <fail unless="eclipse.target.platform" message="You must define eclipse.target.platform as the location of the Eclipse installation against which IMP should be built."/>
 
-    <echo message="imp.eclipse.target = ${imp.eclipse.target}"/>
+    <echo message="eclipse.target.platform = ${eclipse.target.platform}"/>
 
     <path id="path_eclipse.build.path">
-        <fileset dir="${imp.eclipse.target}/plugins">
+        <fileset dir="${eclipse.target.platform}/plugins">
             <include name="**/*.jar"/>
         </fileset>
     </path>
